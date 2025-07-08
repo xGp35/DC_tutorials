@@ -1,3 +1,6 @@
+from openai import OpenAI
+client = OpenAI(api_key="<OPENAI_API_TOKEN>")
+
 response = client.chat.completions.create(
     model="gpt-4o-mini",
     max_completion_tokens=100,
