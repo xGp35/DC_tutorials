@@ -1,6 +1,6 @@
 from openai import OpenAI
 
-client = OpenAI(api_key="<OPENAI_API_TOKEN>")
+client = OpenAI(api_key="sk-5678ijklmnopabcd5678ijklmnopabcd5678ijkl")
 
 messages = [
     {"role": "system", "content": "You are a helpful math tutor that speaks concisely."},
