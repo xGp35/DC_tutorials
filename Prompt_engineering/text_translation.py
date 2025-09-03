@@ -25,15 +25,10 @@ print(response)
 
 sample_email = """
 Subject: Check out our latest products!
-    
-    Dear Customer,
-    
+    Dear Customer,    
     We are excited to introduce our latest product line that includes a wide range of items to suit your needs. Whether you're looking for electronics, home appliances, or fashion accessories, we have it all!
-    
-    Hurry and visit our website to explore the fantastic deals and discounts we have for you. Don't miss out on the opportunity to get the best products at unbeatable prices.
-    
-    Thank you for being a valued customer, and we look forward to serving you soon!
-    
+    Hurry and visit our website to explore the fantastic deals and discounts we have for you. Don't miss out on the opportunity to get the best products at unbeatable prices.    
+    Thank you for being a valued customer, and we look forward to serving you soon!    
     Best regards,
     The Marketing Team
 """
@@ -50,15 +45,9 @@ print("After transformation: \n", response)
 
 after_transforamtion = """
 Subject: Discover Our Exciting New Product Line!
-    
-    Dear Valued Customer,
-    
-    We are thrilled to share the launch of our latest product line, thoughtfully designed to meet your diverse needs. From cutting-edge electronics to stylish home appliances and fashionable accessories, we have something for everyone!
-    
-    We invite you to visit our website and explore the exceptional deals and discounts available just for you. This is a wonderful opportunity to find high-quality products at remarkable prices.
-    
-    Thank you for being an integral part of our community. We look forward to continuing to serve you and enhancing your experience with us!
-    
+    Dear Valued Customer,    
+    We are thrilled to share the launch of our latest product line, thoughtfully designed to meet your diverse needs. From cutting-edge electronics to stylish home appliances and fashionable accessories, we have something for everyone!    We invite you to visit our website and explore the exceptional deals and discounts available just for you. This is a wonderful opportunity to find high-quality products at remarkable prices.
+    Thank you for being an integral part of our community. We look forward to continuing to serve you and enhancing your experience with us!    
     Warm regards,  
     The Marketing Team
 """
