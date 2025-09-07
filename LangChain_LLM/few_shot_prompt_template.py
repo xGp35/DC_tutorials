@@ -18,33 +18,23 @@ examples = [
   }
 ]
 
-example_prompt = PromptTemplate.from_template(
-    "Question: {question}\nAnswer: {answer}\n"
-)
-example_format = "\n".join([example_prompt.format(**ex) for ex in examples])
+# Complete the prompt for formatting answers
+example_prompt = PromptTemplate.from_template("Question: {question}\n{answer}")
 
-# Create the few-shot prompt template
-few_shot_prompt = PromptTemplate(
-    input_variables=["question"],
-    template=(
-        "You are an expert chatbot that answers questions about a user named Jack, "
-        "who is a DataCamp user. Use the following examples to answer the question.\n\n"
-        "{examples}\n"
-        "Question: {question}\nAnswer:"
-    ),
-    partial_variables={"examples": example_format}
+# Create the few-shot prompt
+prompt_template = FewShotPromptTemplate(
+    examples=examples,
+    example_prompt=example_prompt,
+    suffix="Question: {input}",
+    input_variables=["input"],
 )
 
-def get_response(prompt):
-  response = client.chat.completions.create(
-      model="gpt-4o-mini", messages= [{"role": "user", "content": prompt}], temperature=0)
-  
-  return response.choices[0].message.content
+prompt = prompt_template.invoke({"input": "What is Jack's favorite technology on DataCamp?"})
+print(prompt.text)
 
-# Define the user question
-user_question = "What is Jack's most recent course on DataCamp?"
-# Format the few-shot prompt with the user question
-formatted_prompt = few_shot_prompt.format(question=user_question)
-# Get the response from the model
-response = get_response(formatted_prompt)
-print(response)
+# Create an OpenAI chat LLM
+llm = ChatOpenAI(model="gpt-4o-mini", api_key='<OPENAI_API_TOKEN>')
+
+# Create and invoke the chain
+llm_chain = prompt_template | llm
+print(llm_chain.invoke({"input": "What is Jack's favorite technology on DataCamp?"}))
