@@ -1,5 +1,5 @@
 from langchain_openai import ChatOpenAI
-from langchain_core.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate, ChatPromptTemplate
 
 # Create a prompt template from the template string
 template = "You are an artificial intelligence assistant, answer the question. {question}"
@@ -15,6 +15,8 @@ llm_chain = prompt | llm
 # Invoke the chain on the question
 question = "How does LangChain make LLM application development easier?"
 print(llm_chain.invoke({"question": question}))
+# This does the quivalent of writing "You are an artificial intelligence assistant, answer the question. How does LangChain make LLM application development easier?"
+# Now this is automated, the first part gets added automatically
 
 
 llm = ChatOpenAI(model="gpt-4o-mini", api_key='<OPENAI_API_TOKEN>')
