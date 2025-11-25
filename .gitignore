@@ -8,3 +8,4 @@ Embdeddings_API/netflix_titles_1000.csv
 .DS_Store
 Dataframes_pandas/.ipynb_checkpoints/
 LangChain_LLM/.ipynb_checkpoints/
+LangChain_LLM/.env

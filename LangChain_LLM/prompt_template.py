@@ -1,5 +1,6 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate
+from langchain_huggingface import HuggingFacePipeline
 
 # Create a prompt template from the template string
 template = "You are an artificial intelligence assistant, answer the question. {question}"
@@ -7,7 +8,11 @@ prompt = PromptTemplate.from_template(
     template=template
 )
 
-llm = ChatOpenAI(model="gpt-4o-mini", api_key='<OPENAI_API_TOKEN>')	
+llm = HuggingFacePipeline.from_model_id(
+    model_id="crumb/nano-mistral",
+    task="text-generation",
+    pipeline_kwargs={"max_new_tokens": 20}
+)
 
 # Create a chain to integrate the prompt template and LLM
 llm_chain = prompt | llm
@@ -19,7 +24,11 @@ print(llm_chain.invoke({"question": question}))
 # Now this is automated, the first part gets added automatically
 
 
-llm = ChatOpenAI(model="gpt-4o-mini", api_key='<OPENAI_API_TOKEN>')
+llm = HuggingFacePipeline.from_model_id(
+    model_id="crumb/nano-mistral",
+    task="text-generation",
+    pipeline_kwargs={"max_new_tokens": 20}
+)
 
 # Create a chat prompt template
 prompt_template = ChatPromptTemplate.from_messages(
@@ -36,4 +45,4 @@ llm_chain = prompt_template | llm
 
 country = "Japan"
 response = llm_chain.invoke({"country": country})
-print(response.content)
+print(response)

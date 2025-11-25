@@ -5,6 +5,7 @@
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate, FewShotPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
+from langchain_huggingface import HuggingFacePipeline
 
 # Create a prompt template that takes an input activity
 learning_prompt = PromptTemplate(
@@ -37,7 +38,12 @@ time_prompt = PromptTemplate(
     template="I only have one week. Can you create a concise plan to help me hit this goal: {learning_plan}."
 )
 
-llm = ChatOpenAI(model="gpt-4o-mini", api_key='<OPENAI_API_TOKEN>')
+llm = HuggingFacePipeline.from_model_id(
+    model_id="crumb/nano-mistral",
+    task="text-generation",
+    pipeline_kwargs={"max_new_tokens": 20}
+)
+
 
 # Complete the sequential chain with LCEL
 seq_chain = ({"learning_plan": learning_prompt | llm | StrOutputParser()}
