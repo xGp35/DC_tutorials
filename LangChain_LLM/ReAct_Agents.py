@@ -41,7 +41,7 @@ tools = load_tools(["wikipedia"])
 # Define the agent
 agent = create_agent(llm, tools).bind_tools(tools)
 
-
+print("Sending query to agent...")
 # Invoke the agent
 response = agent.invoke({"messages": [("human", "How many people live in New York City?")]})
 print(response)
