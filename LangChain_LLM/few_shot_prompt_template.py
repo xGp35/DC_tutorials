@@ -1,6 +1,8 @@
+from langchain_openai import ChatOpenAI
 from openai import OpenAI
 client = OpenAI(api_key="<OPENAI_API_TOKEN>")
 from langchain_core.prompts import PromptTemplate
+from langchain.prompts.few_shot import FewShotPromptTemplate
 
 # Create the examples list of dicts
 examples = [
